@@ -1,0 +1,20 @@
+<h1>To Do List-Alex</h1>
+<style>
+    h1{color:darkcyan}
+</style>
+
+<form action="/addTodoItem/" method = "post">{% csrf_token %}
+    <input type="text" name="content">
+    <input type="submit" value="Add task">
+</form>
+
+
+ <ul>
+    {% for i in all_items %} 
+    <li>{{i.content}}
+        <form action="/deleteTodoItem/{{i.id}}/" method = "post">{% csrf_token %}
+            <input type="submit" value="Delete">
+        </form> 
+    </li>
+    {% endfor %}
+</ul>
